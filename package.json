@@ -1,6 +1,6 @@
 {
   "name": "@debug/react",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "A tiny debug component for react!",
   "main": "src/index.ts",
   "files": [
