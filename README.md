@@ -1,4 +1,4 @@
-# @debug/react
+# @domlog/react-log
 
 # pack
 

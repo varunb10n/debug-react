@@ -1,7 +1,7 @@
 {
   "name": "@domlog/react-log",
   "version": "0.0.0",
-  "description": "A tiny debug component for react!",
+  "description": "A tiny log react component for debugging!",
   "main": "src/index.ts",
   "files": [
     "src/**/*"
