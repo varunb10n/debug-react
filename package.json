@@ -20,6 +20,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Varun Bhuvanendran",
   "license": "MIT",
   "devDependencies": {
