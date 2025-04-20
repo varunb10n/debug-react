@@ -7,11 +7,11 @@
     "src/**/*"
   ],
   "repository": {
-    "url": "git+ssh://git@github.com/varunb10n/debug-react.git",
+    "url": "git@github.com:varunb10n/react-log.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/varunb10n/debug-react/issues"
+    "url": "https://github.com/varunb10n/react-log/issues"
   },
   "directories": {
     "src": "src"
