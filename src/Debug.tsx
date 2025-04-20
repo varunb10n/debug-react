@@ -4,6 +4,8 @@ interface DebugProps {
 
 export const Debug = (props: DebugProps) => (
   <article>
-    <pre>{JSON.stringify(props, undefined, 4)}</pre>
+    <code>
+      <pre>{JSON.stringify(props, undefined, 4)}</pre>
+    </code>
   </article>
 );
