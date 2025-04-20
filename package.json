@@ -1,5 +1,5 @@
 {
-  "name": "@debug/react",
+  "name": "@domlog/react-log",
   "version": "0.0.0",
   "description": "A tiny debug component for react!",
   "main": "src/index.ts",
@@ -7,7 +7,7 @@
     "src/**/*"
   ],
   "repository": {
-    "url": "git@github.com:varunb10n/debug-react.git",
+    "url": "git+ssh://git@github.com/varunb10n/debug-react.git",
     "type": "git"
   },
   "bugs": {
