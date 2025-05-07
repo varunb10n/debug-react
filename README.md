@@ -8,12 +8,14 @@ $ npm pack
 
 ## link
 
-$ npm link
+```sh
+npm link
+```
 
 ## Usage on other projects
 
-```
-$ npm link @debug/react
+```sh
+npm link @debug/react
 ```
 
 ## Reference
