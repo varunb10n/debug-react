@@ -1,24 +1,23 @@
 # @domlog/react-log
 
-# pack
+A tiny react component for logging!
+
+## pack
 
 $ npm pack
 
-# link
+## link
 
 $ npm link
 
-To use this on other projects
+## Usage on other projects
+
+```
 $ npm link @debug/react
+```
 
-# Tutorial
+## Reference
 
-https://www.youtube.com/watch?v=vSxoV1KUF-A&t=15s
+- [making-a-ui-library-with-react-and-typescript](https://www.bayanbennett.com/posts/making-a-ui-library-with-react-and-typescript/)
 
-https://www.youtube.com/watch?v=V3iggbCZi4E
-
-https://www.bayanbennett.com/posts/making-a-ui-library-with-react-and-typescript/
-
-# semantic-release
-
-https://github.com/semantic-release/semantic-release
+- [semantic-release](https://github.com/semantic-release/semantic-release)
