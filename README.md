@@ -4,7 +4,9 @@ A tiny react component for logging!
 
 ## pack
 
-$ npm pack
+```sh
+npm pack
+```
 
 ## link
 
