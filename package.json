@@ -17,7 +17,8 @@
     "src": "src"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "build": "tsc"
   },
   "publishConfig": {
@@ -26,8 +27,17 @@
   "author": "Varun Bhuvanendran",
   "license": "MIT",
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@tsconfig/recommended": "^1.0.8",
-    "@types/react": "^19.1.2"
+    "@types/jest": "^29.5.14",
+    "@types/react": "^19.1.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.3.2",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
     "react": "^19.1.0",

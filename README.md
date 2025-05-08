@@ -2,16 +2,28 @@
 
 A tiny react component for logging!
 
-## pack
+## Test
+
+```sh
+npm test
+```
+
+## Pack
 
 ```sh
 npm pack
 ```
 
-## link
+## Linking locally, from project directory
 
 ```sh
-npm link
+npm link @domlog/react-log
+```
+
+and import as
+
+```js
+import { Log } from "@domlog/react-log";
 ```
 
 ## Usage on other projects
