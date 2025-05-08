@@ -2,6 +2,26 @@
 
 A tiny react component for logging!
 
+## Install
+
+```sh
+npm install @domlog/react-log
+```
+
+## Import
+
+```js
+import { Log } from "@domlog/react-log";
+```
+
+## Usage
+
+```js
+const data = {name: 'Sun', type: "star"}
+
+<Log {...data} />
+```
+
 ## Test
 
 ```sh
@@ -18,18 +38,6 @@ npm pack
 
 ```sh
 npm link @domlog/react-log
-```
-
-and import as
-
-```js
-import { Log } from "@domlog/react-log";
-```
-
-## Usage on other projects
-
-```sh
-npm link @debug/react
 ```
 
 ## Reference
