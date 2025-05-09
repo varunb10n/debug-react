@@ -16,15 +16,62 @@
 .flex {
   display: flex;
 }
+.flex-col {
+  flex-direction: column;
+}
 .justify-between {
   align-content: space-between;
+}
+.items-center {
+  align-items: center;
+}
+.gap-1 {
+  gap: 0.25rem; /* 4px */
 }
 .font-inherit {
   font-family: inherit;
 }
-.font-medium {
-  font-weight: 500;
+.font-bold {
+  font-weight: 700;
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.bg-f6f8fa {
+  background-color: #f6f8fa;
+}
+.rounded-sm {
+  border-radius: 0.25rem; /* 4px */
+}
+.inline-bock {
+  display: inline-block;
+}
+.border {
+  border-width: 1px;
+}
+.border-solid {
+  border-style: solid;
+}
+.border-d1d9e0 {
+  border-color: #d1d9e0;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.pb-4 {
+  padding-bottom: 1rem;
+}
+.text-xxs {
+  font-size: 0.5rem; /* 8px */
+}
+.text-xs {
+  font-size: 0.75rem; /* 12px */
+}
+.text-base {
+  font-size: 1rem; /* 16px */
 }

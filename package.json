@@ -1,6 +1,6 @@
 {
   "name": "@domlog/react-log",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "description": "A tiny react component for logging!",
   "main": "src/index.ts",
   "files": [
