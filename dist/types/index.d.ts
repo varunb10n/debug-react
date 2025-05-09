@@ -1,2 +1,2 @@
-export * from "./Debug";
+export * from "./components";
 //# sourceMappingURL=index.d.ts.map
