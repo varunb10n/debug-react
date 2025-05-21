@@ -1,15 +1,70 @@
-import { useCallback, useState } from "react";
+import { JSX, useCallback, useState } from "react";
 import Header from "./Header";
 import "./../style.css";
+import { isObject } from "../util/shim";
+
 interface LogProps {
   [key: string]: any;
   open?: boolean;
   type?: "raw" | "formatted";
 }
+
 interface DisplayProps {
   type: "raw" | "formatted";
   [key: string]: any;
 }
+
+interface FormattedProps {
+  [key: string]: any;
+}
+
+const Formatted = (props: FormattedProps) => {
+  const renderFormatted = (
+    obj: Record<string, any>,
+    depth = 0,
+    path = ""
+  ): JSX.Element[] => {
+    return Object.entries(obj).flatMap(([key, value]) => {
+      const marginLeft = depth * 16;
+      const currentPath = path ? `${path}.${key}` : key;
+
+      if (isObject(value)) {
+        return [
+          <pre
+            key={currentPath}
+            className="m-0 whitespace-pre-wrap break-words rounded-sm p-2"
+            style={{ backgroundColor: "#f6f8fa", marginLeft }}
+          >
+            <code className="text-xs" style={{ color: "#4a5565" }}>
+              {key}
+            </code>
+          </pre>,
+          ...renderFormatted(
+            value as Record<string, any>,
+            depth + 1,
+            currentPath
+          ),
+        ];
+      }
+
+      return (
+        <pre
+          key={currentPath}
+          className="m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm"
+          style={{ backgroundColor: "#f6f8fa", marginLeft }}
+        >
+          <code className="text-xs" style={{ color: "#4a5565" }}>
+            {key}: {String(value)}
+          </code>
+        </pre>
+      );
+    });
+  };
+
+  if (!isObject(props)) return null;
+
+  return <>{renderFormatted(props)}</>;
+};
 
 const Display = ({ type, ...rest }: DisplayProps) => {
   switch (type) {
@@ -22,20 +77,14 @@ const Display = ({ type, ...rest }: DisplayProps) => {
         </pre>
       );
     case "formatted":
-      return (
-        <pre className="m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm">
-          <code className="text-xs" style={{ color: "#4a5565" }}>
-            ...
-          </code>
-        </pre>
-      );
+      return <Formatted {...rest} />;
   }
 };
 
 export const Log = (props: LogProps) => {
   const [open, setOpen] = useState(props.open ?? true);
 
-  const [type, setType] = useState<"raw" | "formatted">(props.type ?? "raw");
+  const [type, setType] = useState<"formatted" | "raw">(props.type ?? "raw");
 
   const handleOpen = useCallback(() => {
     setOpen((prev) => !prev);
@@ -60,7 +109,11 @@ export const Log = (props: LogProps) => {
         handleOpen={handleOpen}
         handleType={handleType}
       />
-      {open && <Display type={type} {...props} />}
+      {open && (
+        <span>
+          <Display type={type} {...props} />
+        </span>
+      )}
     </span>
   );
 };

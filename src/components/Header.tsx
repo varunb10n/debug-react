@@ -14,21 +14,23 @@ const Header = (props: HeaderProps) => {
     >
       <small>{props.title}</small>
       <span className="flex items-center gap-1">
-        <button
-          type="button"
-          onClick={props.handleType}
-          style={{
-            fontFamily: "inherit",
-            fontSize: "12px",
-            border: "1px solid #d1d9e0",
-            borderRadius: "4px",
-            outline: "none",
-            backgroundColor: "#fff",
-            color: "#4a5565",
-          }}
-        >
-          {props.type}
-        </button>
+        {props.open && (
+          <button
+            type="button"
+            onClick={props.handleType}
+            style={{
+              fontFamily: "inherit",
+              fontSize: "12px",
+              border: "1px solid #d1d9e0",
+              borderRadius: "4px",
+              outline: "none",
+              backgroundColor: "#fff",
+              color: "#4a5565",
+            }}
+          >
+            {props.type}
+          </button>
+        )}
         {props.open ? (
           <span
             className="font-bold text-xs cursor-pointer"
