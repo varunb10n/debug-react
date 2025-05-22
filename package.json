@@ -36,13 +36,15 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "ts-jest": "^29.3.2",
-    "ts-node": "^10.9.2"
-  },
-  "dependencies": {
     "react": "^19.1.0",
+    "ts-jest": "^29.3.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "types": "dist/types/index.d.ts",
   "release": {
     "branches": [
       "master"
