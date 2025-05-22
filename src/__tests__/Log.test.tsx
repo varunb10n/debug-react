@@ -4,9 +4,9 @@ import { Log } from "../components";
 
 describe("Log component", () => {
   it("render formatted JSON of props", () => {
-    const testProps = { message: "Hi!" };
+    const testProps = { message: "Hello Log!" };
     render(<Log {...testProps} />);
-    expect(screen.getByText(/"message": "Hi!"/)).toBeInTheDocument();
+    expect(screen.getByText(/"message": "Hello Log!"/)).toBeInTheDocument();
   });
 
   it("handles empty props", () => {
