@@ -1,6 +1,6 @@
 {
   "name": "@domlog/react-log",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "A tiny react component for logging!",
   "main": "src/index.ts",
   "files": [
@@ -48,5 +48,6 @@
     "branches": [
       "master"
     ]
-  }
+  },
+  "types": "dist/types/index.d.ts"
 }
