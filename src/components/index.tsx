@@ -1,7 +1,7 @@
 import { JSX, useCallback, useState } from "react";
 import Header from "./Header";
-import "./../style.css";
 import { isObject } from "../util/shim";
+import "./../style.css";
 
 interface LogProps {
   [key: string]: any;
