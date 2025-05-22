@@ -1,4 +1,4 @@
-import { isObject } from "../util/shim";
+import { isObject, isNil } from "../util/shim";
 
 describe("isObject utility", () => {
   it("returns true for plain objects", () => {
@@ -22,5 +22,20 @@ describe("isObject utility", () => {
     expect(isObject("string")).toBe(false);
     expect(isObject(1)).toBe(false);
     expect(isObject(true)).toBe(false);
+  });
+});
+
+describe("isNil utility", () => {
+  it("returns true for null, undefined", () => {
+    expect(isNil(null)).toBe(true);
+    expect(isNil(undefined)).toBe(true);
+  });
+
+  it("returns false for object, array, primitive types", () => {
+    expect(isNil({})).toBe(false);
+    expect(isNil([])).toBe(false);
+    expect(isNil("")).toBe(false);
+    expect(isNil(10)).toBe(false);
+    expect(isNil(true)).toBe(false);
   });
 });

@@ -4,7 +4,7 @@
   "description": "A tiny react component for logging!",
   "main": "src/index.ts",
   "files": [
-    "src/**/*"
+    "dist"
   ],
   "repository": {
     "url": "git@github.com:varunb10n/react-log.git",
@@ -44,7 +44,6 @@
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
-  "types": "dist/types/index.d.ts",
   "release": {
     "branches": [
       "master"

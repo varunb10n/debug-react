@@ -3,7 +3,7 @@
  * @param value The value to check.
  * @returns {boolean} Returns `true` if `value` is null or undefined, else `false`.
  */
-const isNil = (value: any) => value === null || value === undefined;
+export const isNil = (value: any) => value === null || value === undefined;
 
 /**
  *
