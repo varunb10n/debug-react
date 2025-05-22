@@ -17,7 +17,11 @@ import { Log } from "@domlog/react-log";
 ## Usage
 
 ```js
-const data = {name: 'Sun', type: "star"}
+const data = {
+    name: 'Sun',
+    type: "star"
+    radius: 696340,
+}
 
 <Log {...data} />
 ```
