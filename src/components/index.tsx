@@ -1,22 +1,97 @@
 import { JSX, useCallback, useState } from "react";
-import Header from "./Header";
 import { isObject } from "../util/shim";
-import "./../style.css";
+// import "./../style.css";
 
-interface LogProps {
-  [key: string]: any;
+export interface LogProps {
+  data: {
+    [key: string]: any;
+  };
   open?: boolean;
   type?: "raw" | "formatted";
 }
 
-interface DisplayProps {
+export interface DisplayProps {
   type: "raw" | "formatted";
   [key: string]: any;
 }
 
-interface FormattedProps {
+export interface FormattedProps {
   [key: string]: any;
 }
+
+interface HeaderProps {
+  title?: string;
+  open?: boolean;
+  type: "raw" | "formatted";
+  handleOpen: () => void;
+  handleType: () => void;
+}
+
+const Header = (props: HeaderProps) => {
+  return (
+    <span
+      style={{ paddingTop: "8px", paddingBottom: "8px" }}
+      className="flex justify-between"
+    >
+      <small>{props.title}</small>
+      <span className="flex items-center gap-1">
+        {props.open && (
+          <button
+            type="button"
+            onClick={props.handleType}
+            style={{
+              fontFamily: "inherit",
+              fontSize: "12px",
+              border: "1px solid #d1d9e0",
+              borderRadius: "4px",
+              outline: "none",
+              backgroundColor: "#fff",
+              color: "#4a5565",
+            }}
+          >
+            {props.type}
+          </button>
+        )}
+        {props.open ? (
+          <span
+            className="flex font-bold text-xs cursor-pointer"
+            onClick={props.handleOpen}
+            style={{
+              width: "14px",
+              height: "14px",
+              borderRadius: "50%",
+              border: "1px solid #d1d9e0",
+              justifyContent: "center",
+              alignItems: "center",
+              userSelect: "none",
+              color: "#4a5565",
+            }}
+          >
+            &#9866;
+          </span>
+        ) : (
+          <span
+            className="font-bold text-xxs cursor-pointer"
+            onClick={props.handleOpen}
+            style={{
+              width: "14px",
+              height: "14px",
+              borderRadius: "50%",
+              border: "1px solid #d1d9e0",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              userSelect: "none",
+              color: "#4a5565",
+            }}
+          >
+            &#10010;
+          </span>
+        )}
+      </span>
+    </span>
+  );
+};
 
 const Formatted = (props: FormattedProps) => {
   const renderFormatted = (
@@ -81,7 +156,7 @@ const Display = ({ type, ...rest }: DisplayProps) => {
   }
 };
 
-export const Log = (props: LogProps) => {
+const Log = (props: LogProps) => {
   const [open, setOpen] = useState(props.open ?? true);
 
   const [type, setType] = useState<"formatted" | "raw">(props.type ?? "raw");
@@ -111,9 +186,11 @@ export const Log = (props: LogProps) => {
       />
       {open && (
         <span>
-          <Display type={type} {...props} />
+          <Display type={type} {...props.data} />
         </span>
       )}
     </span>
   );
 };
+
+export default Log;
