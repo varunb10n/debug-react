@@ -1,1 +1,7 @@
-export { default as Log } from "./components";
+export interface LogProps {
+    data: {
+        [key: string]: any;
+    };
+    open?: boolean;
+    type?: "raw" | "formatted";
+}

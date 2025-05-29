@@ -11,7 +11,7 @@ npm install @domlog/react-log
 ## Import
 
 ```js
-import { Log } from "@domlog/react-log";
+import Log from "@domlog/react-log";
 ```
 
 ## Usage
@@ -23,7 +23,17 @@ const data = {
     radius: 696340,
 }
 
-<Log {...data} />
+<Log data={...data} />
+```
+
+# Options
+
+```js
+data: {
+    [key: string]: any;
+};
+open?: boolean;
+type?: "raw" | "formatted";
 ```
 
 ## Test
@@ -43,9 +53,3 @@ npm pack
 ```sh
 npm link @domlog/react-log
 ```
-
-## Reference
-
-- [making-a-ui-library-with-react-and-typescript](https://www.bayanbennett.com/posts/making-a-ui-library-with-react-and-typescript/)
-
-- [semantic-release](https://github.com/semantic-release/semantic-release)

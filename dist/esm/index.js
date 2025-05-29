@@ -1,4 +1,4 @@
-import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
+import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import { useState, useCallback } from 'react';
 
 /**
@@ -20,35 +20,33 @@ const isObject = (value) => {
         !(value instanceof Function));
 };
 
-function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
-  var insertAt = ref.insertAt;
+const Formatted = (props) => {
+    const renderFormatted = (obj, depth = 0, path = "") => {
+        return Object.entries(obj).flatMap(([key, value]) => {
+            const marginLeft = depth * 16;
+            const currentPath = path ? `${path}.${key}` : key;
+            if (isObject(value)) {
+                return [
+                    jsx("pre", { className: "m-0 whitespace-pre-wrap break-words rounded-sm p-2", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: key }) }, currentPath),
+                    ...renderFormatted(value, depth + 1, currentPath),
+                ];
+            }
+            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxs("code", { className: "text-xs", style: { color: "#4a5565" }, children: [key, ": ", String(value)] }) }, currentPath));
+        });
+    };
+    if (!isObject(props))
+        return null;
+    return jsx(Fragment, { children: renderFormatted(props) });
+};
 
-  if (typeof document === 'undefined') { return; }
-
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
+const Display = ({ type, ...rest }) => {
+    switch (type) {
+        case "raw":
+            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: JSON.stringify(rest, undefined, 4) }) }));
+        case "formatted":
+            return jsx(Formatted, { ...rest });
     }
-  } else {
-    head.appendChild(style);
-  }
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var css_248z = ".m-0 {\n  margin: 0;\n}\n.whitespace-pre-wrap {\n  white-space: pre-wrap;\n}\n.break-words {\n  word-break: break-word;\n}\n.w-inherit {\n  width: inherit;\n}\n.w-full {\n  width: 100%;\n}\n.flex {\n  display: flex;\n}\n.flex-col {\n  flex-direction: column;\n}\n.justify-between {\n  align-content: space-between;\n}\n.items-center {\n  align-items: center;\n}\n.gap-1 {\n  gap: 0.25rem; /* 4px */\n}\n.font-inherit {\n  font-family: inherit;\n}\n.font-bold {\n  font-weight: 700;\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.bg-f6f8fa {\n  background-color: #f6f8fa;\n}\n.rounded-sm {\n  border-radius: 0.25rem; /* 4px */\n}\n.inline-bock {\n  display: inline-block;\n}\n.border {\n  border-width: 1px;\n}\n.border-solid {\n  border-style: solid;\n}\n.border-d1d9e0 {\n  border-color: #d1d9e0;\n}\n.px-4 {\n  padding-left: 1rem;\n  padding-right: 1rem;\n}\n.py-4 {\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n}\n.pb-4 {\n  padding-bottom: 1rem;\n}\n.text-xxs {\n  font-size: 0.5rem; /* 8px */\n}\n.text-xs {\n  font-size: 0.75rem; /* 12px */\n}\n.text-base {\n  font-size: 1rem; /* 16px */\n}\n.text-white {\n  color: #fff;\n}\n";
-styleInject(css_248z);
+};
 
 const Header = (props) => {
     return (jsxs("span", { style: { paddingTop: "8px", paddingBottom: "8px" }, className: "flex justify-between", children: [jsx("small", { children: props.title }), jsxs("span", { className: "flex items-center gap-1", children: [props.open && (jsx("button", { type: "button", onClick: props.handleType, style: {
@@ -80,32 +78,7 @@ const Header = (props) => {
                             color: "#4a5565",
                         }, children: "\u271A" }))] })] }));
 };
-const Formatted = (props) => {
-    const renderFormatted = (obj, depth = 0, path = "") => {
-        return Object.entries(obj).flatMap(([key, value]) => {
-            const marginLeft = depth * 16;
-            const currentPath = path ? `${path}.${key}` : key;
-            if (isObject(value)) {
-                return [
-                    jsx("pre", { className: "m-0 whitespace-pre-wrap break-words rounded-sm p-2", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: key }) }, currentPath),
-                    ...renderFormatted(value, depth + 1, currentPath),
-                ];
-            }
-            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxs("code", { className: "text-xs", style: { color: "#4a5565" }, children: [key, ": ", String(value)] }) }, currentPath));
-        });
-    };
-    if (!isObject(props))
-        return null;
-    return jsx(Fragment, { children: renderFormatted(props) });
-};
-const Display = ({ type, ...rest }) => {
-    switch (type) {
-        case "raw":
-            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: JSON.stringify(rest, undefined, 4) }) }));
-        case "formatted":
-            return jsx(Formatted, { ...rest });
-    }
-};
+
 const Log = (props) => {
     const [open, setOpen] = useState(props.open ?? true);
     const [type, setType] = useState(props.type ?? "raw");
