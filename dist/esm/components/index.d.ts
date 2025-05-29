@@ -1,4 +1,3 @@
-import "./../style.css";
 export interface LogProps {
     data: {
         [key: string]: any;

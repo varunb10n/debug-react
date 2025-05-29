@@ -19,7 +19,7 @@
     "src": "src"
   },
   "scripts": {
-    "test": "jest --watchAll --verbose",
+    "test": "jest --verbose",
     "test:watch": "jest --watch",
     "build": "rollup -c",
     "dev": "rollup -c -w",

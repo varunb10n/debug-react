@@ -22,36 +22,6 @@ const isObject = (value) => {
         !(value instanceof Function));
 };
 
-function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
-  var insertAt = ref.insertAt;
-
-  if (typeof document === 'undefined') { return; }
-
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
-    }
-  } else {
-    head.appendChild(style);
-  }
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var css_248z = ".m-0 {\n  margin: 0;\n}\n.whitespace-pre-wrap {\n  white-space: pre-wrap;\n}\n.break-words {\n  word-break: break-word;\n}\n.w-inherit {\n  width: inherit;\n}\n.w-full {\n  width: 100%;\n}\n.flex {\n  display: flex;\n}\n.flex-col {\n  flex-direction: column;\n}\n.justify-between {\n  align-content: space-between;\n}\n.items-center {\n  align-items: center;\n}\n.gap-1 {\n  gap: 0.25rem; /* 4px */\n}\n.font-inherit {\n  font-family: inherit;\n}\n.font-bold {\n  font-weight: 700;\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.bg-f6f8fa {\n  background-color: #f6f8fa;\n}\n.rounded-sm {\n  border-radius: 0.25rem; /* 4px */\n}\n.inline-bock {\n  display: inline-block;\n}\n.border {\n  border-width: 1px;\n}\n.border-solid {\n  border-style: solid;\n}\n.border-d1d9e0 {\n  border-color: #d1d9e0;\n}\n.px-4 {\n  padding-left: 1rem;\n  padding-right: 1rem;\n}\n.py-4 {\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n}\n.pb-4 {\n  padding-bottom: 1rem;\n}\n.text-xxs {\n  font-size: 0.5rem; /* 8px */\n}\n.text-xs {\n  font-size: 0.75rem; /* 12px */\n}\n.text-base {\n  font-size: 1rem; /* 16px */\n}\n.text-white {\n  color: #fff;\n}\n";
-styleInject(css_248z);
-
 const Header = (props) => {
     return (jsxRuntime.jsxs("span", { style: { paddingTop: "8px", paddingBottom: "8px" }, className: "flex justify-between", children: [jsxRuntime.jsx("small", { children: props.title }), jsxRuntime.jsxs("span", { className: "flex items-center gap-1", children: [props.open && (jsxRuntime.jsx("button", { type: "button", onClick: props.handleType, style: {
                             fontFamily: "inherit",
