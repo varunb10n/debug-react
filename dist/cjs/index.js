@@ -22,6 +22,34 @@ const isObject = (value) => {
         !(value instanceof Function));
 };
 
+const Formatted = (props) => {
+    const renderFormatted = (obj, depth = 0, path = "") => {
+        return Object.entries(obj).flatMap(([key, value]) => {
+            const marginLeft = depth * 16;
+            const currentPath = path ? `${path}.${key}` : key;
+            if (isObject(value)) {
+                return [
+                    jsxRuntime.jsx("pre", { className: "m-0 whitespace-pre-wrap break-words rounded-sm p-2", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxRuntime.jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: key }) }, currentPath),
+                    ...renderFormatted(value, depth + 1, currentPath),
+                ];
+            }
+            return (jsxRuntime.jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxRuntime.jsxs("code", { className: "text-xs", style: { color: "#4a5565" }, children: [key, ": ", String(value)] }) }, currentPath));
+        });
+    };
+    if (!isObject(props))
+        return null;
+    return jsxRuntime.jsx(jsxRuntime.Fragment, { children: renderFormatted(props) });
+};
+
+const Display = ({ type, ...rest }) => {
+    switch (type) {
+        case "raw":
+            return (jsxRuntime.jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", children: jsxRuntime.jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: JSON.stringify(rest, undefined, 4) }) }));
+        case "formatted":
+            return jsxRuntime.jsx(Formatted, { ...rest });
+    }
+};
+
 const Header = (props) => {
     return (jsxRuntime.jsxs("span", { style: { paddingTop: "8px", paddingBottom: "8px" }, className: "flex justify-between", children: [jsxRuntime.jsx("small", { children: props.title }), jsxRuntime.jsxs("span", { className: "flex items-center gap-1", children: [props.open && (jsxRuntime.jsx("button", { type: "button", onClick: props.handleType, style: {
                             fontFamily: "inherit",
@@ -52,32 +80,7 @@ const Header = (props) => {
                             color: "#4a5565",
                         }, children: "\u271A" }))] })] }));
 };
-const Formatted = (props) => {
-    const renderFormatted = (obj, depth = 0, path = "") => {
-        return Object.entries(obj).flatMap(([key, value]) => {
-            const marginLeft = depth * 16;
-            const currentPath = path ? `${path}.${key}` : key;
-            if (isObject(value)) {
-                return [
-                    jsxRuntime.jsx("pre", { className: "m-0 whitespace-pre-wrap break-words rounded-sm p-2", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxRuntime.jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: key }) }, currentPath),
-                    ...renderFormatted(value, depth + 1, currentPath),
-                ];
-            }
-            return (jsxRuntime.jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxRuntime.jsxs("code", { className: "text-xs", style: { color: "#4a5565" }, children: [key, ": ", String(value)] }) }, currentPath));
-        });
-    };
-    if (!isObject(props))
-        return null;
-    return jsxRuntime.jsx(jsxRuntime.Fragment, { children: renderFormatted(props) });
-};
-const Display = ({ type, ...rest }) => {
-    switch (type) {
-        case "raw":
-            return (jsxRuntime.jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", children: jsxRuntime.jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: JSON.stringify(rest, undefined, 4) }) }));
-        case "formatted":
-            return jsxRuntime.jsx(Formatted, { ...rest });
-    }
-};
+
 const Log = (props) => {
     const [open, setOpen] = react.useState(props.open ?? true);
     const [type, setType] = react.useState(props.type ?? "raw");

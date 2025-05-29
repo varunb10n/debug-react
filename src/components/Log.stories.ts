@@ -35,6 +35,10 @@ export const Formatted = {
       version: "0.0.10",
       info: {
         homepage: "https://",
+        additionalInfo: {
+          status: "development",
+          stable: false,
+        },
       },
       versions: ["0.0.8", "0.0.9"],
     },

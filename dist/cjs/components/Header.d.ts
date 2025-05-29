@@ -1,4 +1,4 @@
-interface HeaderProps {
+export interface HeaderProps {
     title?: string;
     open?: boolean;
     type: "raw" | "formatted";

@@ -1,4 +1,4 @@
-import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
+import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import { useState, useCallback } from 'react';
 
 /**
@@ -18,6 +18,34 @@ const isObject = (value) => {
         type === "object" &&
         !Array.isArray(value) &&
         !(value instanceof Function));
+};
+
+const Formatted = (props) => {
+    const renderFormatted = (obj, depth = 0, path = "") => {
+        return Object.entries(obj).flatMap(([key, value]) => {
+            const marginLeft = depth * 16;
+            const currentPath = path ? `${path}.${key}` : key;
+            if (isObject(value)) {
+                return [
+                    jsx("pre", { className: "m-0 whitespace-pre-wrap break-words rounded-sm p-2", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: key }) }, currentPath),
+                    ...renderFormatted(value, depth + 1, currentPath),
+                ];
+            }
+            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxs("code", { className: "text-xs", style: { color: "#4a5565" }, children: [key, ": ", String(value)] }) }, currentPath));
+        });
+    };
+    if (!isObject(props))
+        return null;
+    return jsx(Fragment, { children: renderFormatted(props) });
+};
+
+const Display = ({ type, ...rest }) => {
+    switch (type) {
+        case "raw":
+            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: JSON.stringify(rest, undefined, 4) }) }));
+        case "formatted":
+            return jsx(Formatted, { ...rest });
+    }
 };
 
 const Header = (props) => {
@@ -50,32 +78,7 @@ const Header = (props) => {
                             color: "#4a5565",
                         }, children: "\u271A" }))] })] }));
 };
-const Formatted = (props) => {
-    const renderFormatted = (obj, depth = 0, path = "") => {
-        return Object.entries(obj).flatMap(([key, value]) => {
-            const marginLeft = depth * 16;
-            const currentPath = path ? `${path}.${key}` : key;
-            if (isObject(value)) {
-                return [
-                    jsx("pre", { className: "m-0 whitespace-pre-wrap break-words rounded-sm p-2", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: key }) }, currentPath),
-                    ...renderFormatted(value, depth + 1, currentPath),
-                ];
-            }
-            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", style: { backgroundColor: "#f6f8fa", marginLeft }, children: jsxs("code", { className: "text-xs", style: { color: "#4a5565" }, children: [key, ": ", String(value)] }) }, currentPath));
-        });
-    };
-    if (!isObject(props))
-        return null;
-    return jsx(Fragment, { children: renderFormatted(props) });
-};
-const Display = ({ type, ...rest }) => {
-    switch (type) {
-        case "raw":
-            return (jsx("pre", { className: "m-0 whitespace-pre-wrap break-words bg-f6f8fa rounded-sm", children: jsx("code", { className: "text-xs", style: { color: "#4a5565" }, children: JSON.stringify(rest, undefined, 4) }) }));
-        case "formatted":
-            return jsx(Formatted, { ...rest });
-    }
-};
+
 const Log = (props) => {
     const [open, setOpen] = useState(props.open ?? true);
     const [type, setType] = useState(props.type ?? "raw");
