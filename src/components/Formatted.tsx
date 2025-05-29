@@ -15,7 +15,7 @@ const Formatted = (props: FormattedProps) => {
 
       if (isObject(value)) {
         return [
-          <Pre key={currentPath} marginLeft={marginLeft}>
+          <Pre key={currentPath} marginleft={marginLeft}>
             <Code>{key}</Code>
           </Pre>,
           ...renderFormatted(
@@ -27,7 +27,7 @@ const Formatted = (props: FormattedProps) => {
       }
 
       return (
-        <Pre key={currentPath} marginLeft={marginLeft}>
+        <Pre key={currentPath} marginleft={marginLeft}>
           <Code>
             {key}: {String(value)}
           </Code>
