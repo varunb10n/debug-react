@@ -1,1 +1,1 @@
-export { default as Log } from "./components";
+export * from "./components";

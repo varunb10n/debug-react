@@ -1,9 +1,11 @@
+import * as react_jsx_runtime from 'react/jsx-runtime';
+
 interface LogProps {
-    data: {
-        [key: string]: any;
-    };
+    [key: string]: any;
     open?: boolean;
     type?: "raw" | "formatted";
 }
 
-export type { LogProps };
+declare const Log: (props: LogProps) => react_jsx_runtime.JSX.Element;
+
+export { Log };

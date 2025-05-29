@@ -48,12 +48,12 @@ export const DisplayWrapper = styled.div`
   margin-top: 0.25rem;
 `;
 
-export const Pre = styled.pre<{ marginLeft?: number }>`
+export const Pre = styled.pre<{ marginleft?: number }>`
   font-size: 0.75rem;
   white-space: pre-wrap;
   word-break: break-word;
   margin: 0;
-  margin-left: ${(props) => (props.marginLeft ? `${props.marginLeft}px` : 0)};
+  margin-left: ${(props) => (props.marginleft ? `${props.marginleft}px` : 0)};
 `;
 
 export const Code = styled.code`

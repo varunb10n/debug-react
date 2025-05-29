@@ -1,3 +1,1 @@
-import { LogProps } from "../types";
-declare const Log: (props: LogProps) => import("react/jsx-runtime").JSX.Element;
-export default Log;
+export { Log } from "./Log";
