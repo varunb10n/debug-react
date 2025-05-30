@@ -1,4 +1,4 @@
-import Log from ".";
+import { Log } from "./Log";
 
 export default {
   title: "react-log",

@@ -966,7 +966,7 @@ const Pre = dt.pre `
   white-space: pre-wrap;
   word-break: break-word;
   margin: 0;
-  margin-left: ${(props) => (props.marginLeft ? `${props.marginLeft}px` : 0)};
+  margin-left: ${(props) => (props.marginleft ? `${props.marginleft}px` : 0)};
 `;
 const Code = dt.code `
   font-size: 0.75rem;
@@ -999,11 +999,11 @@ const Formatted = (props) => {
             const currentPath = path ? `${path}.${key}` : key;
             if (isObject(value)) {
                 return [
-                    jsx(Pre, { marginLeft: marginLeft, children: jsx(Code, { children: key }) }, currentPath),
+                    jsx(Pre, { marginleft: marginLeft, children: jsx(Code, { children: key }) }, currentPath),
                     ...renderFormatted(value, depth + 1, currentPath),
                 ];
             }
-            return (jsx(Pre, { marginLeft: marginLeft, children: jsxs(Code, { children: [key, ": ", String(value)] }) }, currentPath));
+            return (jsx(Pre, { marginleft: marginLeft, children: jsxs(Code, { children: [key, ": ", String(value)] }) }, currentPath));
         });
     };
     if (!isObject(props))
